@@ -167,6 +167,34 @@ describe('CompiledMatcher', () => {
     ])
   })
 
+  test('Пользовательский Glob', () => {
+    const tree: TEntry[] = [
+      'file.1.txt',
+      'file.23.txt',
+      'file.456.txt',
+      { n: 'folder', children: ['file.02.txt', 'file.789.txt'] }
+    ]
+    // Неподдерживаемые паттерны не являются помехой для сложных подборов путей.
+    // Но это потребует некоторого вмешательства в Glob.
+    class CustomGlob extends Glob {
+      constructor() {
+        // Паттерн {kind: 2, depth: 0, re: null}
+        super('**')
+        // @ts-expect-error Сегменты заморожены, но элемент можно по тихому добавить или подменить
+        this._segments.push({ kind: 4, depth: 1, re: /^file\.[0-9]{3}\.txt$/ })
+      }
+    }
+
+    // Мы получим нечто подобное '**/file.[0-9]{3}.txt'
+    const matcher = new CompiledMatcher({ include: new CustomGlob() })
+    // Подберет файлы только с тремя цифровыми счетчиками
+    const result = walk(tree, matcher)
+    expect(result).toStrictEqual([
+      'file.456.txt',
+      'folder/file.789.txt'
+    ])
+  })
+
   test('Case sensitive', () => {
     const tree: TEntry[] = ['File1', 'file2', 'file3', 'filE4']
     // Glob можно передавать явно, и установить noIgnoreCase не для всех паттернов, а только для конкретных
