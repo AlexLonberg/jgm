@@ -1,0 +1,57 @@
+{
+  // Конфигурация для тестов. Копируем и изменяем параметры основного tsconfig.dist.json.
+  "compilerOptions": {
+    "incremental": true, // +
+    "composite": true, // +
+    "tsBuildInfoFile": "./.temp/.tsbuildinfo_project",
+    "target": "ESNext",
+    "lib": [
+      "ESNext"
+    ],
+    "module": "NodeNext",
+    "rootDir": ".", // +
+    "moduleResolution": "NodeNext",
+    "types": [
+      "node"
+    ],
+    "declaration": true,
+    "declarationMap": false,
+    "outDir": "./.temp/project", // +
+    "removeComments": false,
+    "noEmit": true, // +
+    "noEmitOnError": false, // +
+    "declarationDir": null,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "allowUnreachableCode": false,
+    "skipLibCheck": true,
+    "disableSizeLimit": true
+  },
+  "typeAcquisition": {
+    "disableFilenameBasedTypeAcquisition": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "scripts/**/*.ts",
+    "scripts/**/*.js"
+  ],
+  "files": [
+    "eslint.config.js",
+    "vitest.config.ts"
+  ],
+  // https://typestrong.org/ts-node/docs/configuration/
+  "ts-node": {
+    "transpileOnly": true
+  },
+  "references": null
+}

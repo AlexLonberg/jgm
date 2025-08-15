@@ -1,0 +1,62 @@
+{
+  // DOC VSCode glob patterns https://code.visualstudio.com/docs/editor/glob-patterns
+  "files.exclude": {
+    // "**/.git": true,
+    // "**/node_modules": true
+  },
+  "search.exclude": {
+    // "**/_*": true,
+    // "**/.git": true,
+    // "**/node_modules": true,
+    // ".temp/": true,
+    // "dist/": true,
+    // "**/*.json": true,
+    // "eslint.config.js": true,
+    // "vitest.config.ts": true,
+    // "LICENSE.md": true
+  },
+  "googleSearchContextMenu.items": {
+    "MDNWeb": {
+      "enabled": true
+    },
+    "NodeJS": {
+      "enabled": true
+    }
+  },
+  "cSpell.words": [],
+  "editor.snippetSuggestions": "inline",
+  "[markdown]": {
+    "editor.rulers": [
+      88 // code
+    ]
+  },
+  "[typescript]": {
+    "editor.rulers": [
+      88,
+      120
+    ],
+  },
+  // Запускает eslint с системной версией NodeJS
+  "eslint.runtime": "node",
+  "eslint.useESLintClass": true,
+  "eslint.codeActionsOnSave.mode": "problems",
+  // "eslint.codeActionsOnSave.mode": "all",
+  // Отключаем действия для правил удаляющих код при форматировании. Если выше включен mode:"problems" - эта настройка игнорируется.
+  // !rule - off
+  // *     - on
+  "eslint.codeActionsOnSave.rules": [
+    "!no-unused-vars",
+    "!@typescript-eslint/no-unused-vars",
+    "*"
+  ],
+  "editor.codeActionsOnSave": {
+    "editor.formatOnSave": "explicit",
+    "source.fixAll": "explicit"
+    // Обе опции не могут сортировать импорт начиная с типов
+    // "source.organizeImports": "explicit",
+    // "source.sortImports": "explicit"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  // Без этой настройки тесты, в режиме Debug, не запускаются на D:/*-диске
+  "vitest.shellType": "terminal"
+}
